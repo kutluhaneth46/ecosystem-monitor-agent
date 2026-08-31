@@ -1,4 +1,15 @@
 {
   "version": 1,
-  "steps": {}
+  "steps": {
+    "report": {
+      "llm.run": {
+        "content": [
+          {
+            "type": "text",
+            "text": "4 open PRs across Arc and Tempo; no merges yet. RPC endpoints healthy. Next: follow up on arc-node #299 review and tempo-support #28."
+          }
+        ]
+      }
+    }
+  }
 }
