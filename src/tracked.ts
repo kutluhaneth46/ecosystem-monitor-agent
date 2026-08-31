@@ -57,4 +57,14 @@ export const SHOWCASE_LINKS = [
     title: "tempo-support showcase",
     url: "https://github.com/tempoxyz/tempo-support/issues/28",
   },
+  {
+    ecosystem: "miden" as const,
+    title: "Miden Web SDK Survival Kit",
+    url: "https://github.com/kutluhaneth46/miden-dev-survival-kit",
+  },
+  {
+    ecosystem: "miden" as const,
+    title: "web-sdk showcase",
+    url: "https://github.com/0xMiden/web-sdk/issues/354",
+  },
 ];
