@@ -11,6 +11,8 @@ export type RpcEndpoint = {
   name: string;
   url: string;
   expectedChainId?: string;
+  /** jsonrpc = eth_chainId probe; https = reachability only (e.g. gRPC hosts). */
+  kind?: "jsonrpc" | "https";
 };
 
 /** Contributor PRs + showcase issues we actively track. */
@@ -21,7 +23,10 @@ export const TRACKED_PRS: TrackedPr[] = [
   { ecosystem: "arc", owner: "circlefin", repo: "arc-node", number: 299, label: "Public testnet RPC guide" },
   { ecosystem: "tempo", owner: "tempoxyz", repo: "tempo", number: 7372, label: "Faucet empty address" },
   { ecosystem: "tempo", owner: "tempoxyz", repo: "tempo", number: 7373, label: "Signing key 0600" },
-  { ecosystem: "miden", owner: "0xMiden", repo: "guardian-dashboard", number: 49, label: "Guardian dashboard fix" },
+  { ecosystem: "miden", owner: "0xMiden", repo: "guardian-dashboard", number: 49, label: "BigInt amount precision" },
+  { ecosystem: "miden", owner: "0xMiden", repo: "web-sdk", number: 332, label: "waitForBlock syncState" },
+  { ecosystem: "miden", owner: "0xMiden", repo: "web-sdk", number: 334, label: "Keystore callback bridge" },
+  { ecosystem: "miden", owner: "0xMiden", repo: "web-sdk", number: 351, label: "Note status fingerprint" },
   { ecosystem: "miden", owner: "0xMiden", repo: "web-sdk", number: 353, label: "sendPrivateNote block hint" },
   { ecosystem: "sapiom", owner: "sapiom", repo: "sapiom-js", number: 748, label: "Nullable JSON Schema unions" },
 ];
@@ -38,6 +43,12 @@ export const RPC_ENDPOINTS: RpcEndpoint[] = [
     name: "Tempo Moderato",
     url: "https://rpc.moderato.tempo.xyz",
     expectedChainId: "0xa5bf", // 42431
+  },
+  {
+    ecosystem: "miden",
+    name: "Miden Testnet RPC",
+    url: "https://rpc.testnet.miden.io",
+    kind: "https",
   },
 ];
 
@@ -66,5 +77,10 @@ export const SHOWCASE_LINKS = [
     ecosystem: "miden" as const,
     title: "web-sdk showcase",
     url: "https://github.com/0xMiden/web-sdk/issues/354",
+  },
+  {
+    ecosystem: "sapiom" as const,
+    title: "Ecosystem Monitor agent",
+    url: "https://github.com/kutluhaneth46/ecosystem-monitor-agent",
   },
 ];
