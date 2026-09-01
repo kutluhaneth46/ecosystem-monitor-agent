@@ -17,7 +17,10 @@ export type RpcEndpoint = {
 
 /** Contributor PRs + showcase issues we actively track. */
 export const TRACKED_PRS: TrackedPr[] = [
+  { ecosystem: "arc", owner: "circlefin", repo: "arc-node", number: 308, label: "RPC gascap vs protocol limits" },
+  { ecosystem: "arc", owner: "circlefin", repo: "arc-node", number: 307, label: "Remove snapshot URL FIXME" },
   { ecosystem: "arc", owner: "circlefin", repo: "arc-node", number: 306, label: "Operator docs version + blockNumber" },
+  { ecosystem: "arc", owner: "circlefin", repo: "arc-commerce", number: 59, label: "Admin credentials from env" },
   { ecosystem: "arc", owner: "circlefin", repo: "arc-commerce", number: 58, label: "Pin latest deps" },
   { ecosystem: "arc", owner: "circlefin", repo: "arc-node", number: 295, label: "RPC deprecation docs" },
   { ecosystem: "arc", owner: "circlefin", repo: "arc-node", number: 297, label: "JSON-RPC breaking changes" },
