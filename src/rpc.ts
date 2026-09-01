@@ -15,8 +15,50 @@ export async function checkRpcHealth(
     name: string;
     url: string;
     expectedChainId?: string;
+    kind?: "jsonrpc" | "https";
   },
 ): Promise<RpcHealth> {
+  if (endpoint.kind === "https") {
+    return checkHttpsReachable(endpoint);
+  }
+  return checkJsonRpc(endpoint);
+}
+
+async function checkHttpsReachable(endpoint: {
+  ecosystem: string;
+  name: string;
+  url: string;
+}): Promise<RpcHealth> {
+  const started = Date.now();
+  try {
+    const res = await fetch(endpoint.url, { method: "HEAD" });
+    const ok = res.status < 500;
+    return {
+      ecosystem: endpoint.ecosystem,
+      name: endpoint.name,
+      url: endpoint.url,
+      ok,
+      latencyMs: Date.now() - started,
+      error: ok ? undefined : `HTTP ${res.status}`,
+    };
+  } catch (error) {
+    return {
+      ecosystem: endpoint.ecosystem,
+      name: endpoint.name,
+      url: endpoint.url,
+      ok: false,
+      latencyMs: Date.now() - started,
+      error: error instanceof Error ? error.message : "https probe failed",
+    };
+  }
+}
+
+async function checkJsonRpc(endpoint: {
+  ecosystem: string;
+  name: string;
+  url: string;
+  expectedChainId?: string;
+}): Promise<RpcHealth> {
   const started = Date.now();
   try {
     const res = await fetch(endpoint.url, {
