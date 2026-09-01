@@ -55,6 +55,11 @@ export const RPC_ENDPOINTS: RpcEndpoint[] = [
 export const SHOWCASE_LINKS = [
   {
     ecosystem: "arc" as const,
+    title: "arc-node showcase",
+    url: "https://github.com/circlefin/arc-node/issues/305",
+  },
+  {
+    ecosystem: "arc" as const,
     title: "Arc Developer Survival Kit",
     url: "https://github.com/kutluhaneth46/arc-dev-survival-kit",
   },
