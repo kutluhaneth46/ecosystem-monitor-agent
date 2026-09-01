@@ -31,6 +31,8 @@ export const TRACKED_PRS: TrackedPr[] = [
   { ecosystem: "miden", owner: "0xMiden", repo: "web-sdk", number: 332, label: "waitForBlock syncState" },
   { ecosystem: "miden", owner: "0xMiden", repo: "web-sdk", number: 334, label: "Keystore callback bridge" },
   { ecosystem: "miden", owner: "0xMiden", repo: "web-sdk", number: 351, label: "Note status fingerprint" },
+  { ecosystem: "miden", owner: "0xMiden", repo: "web-sdk", number: 355, label: "Idxdb downgrade store reset" },
+  { ecosystem: "miden", owner: "0xMiden", repo: "web-sdk", number: 356, label: "Vite plugin CI lint" },
   { ecosystem: "miden", owner: "0xMiden", repo: "web-sdk", number: 353, label: "sendPrivateNote block hint" },
   { ecosystem: "sapiom", owner: "sapiom", repo: "sapiom-js", number: 748, label: "Nullable JSON Schema unions" },
 ];
