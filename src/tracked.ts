@@ -59,6 +59,11 @@ export const SHOWCASE_LINKS = [
     url: "https://github.com/kutluhaneth46/arc-dev-survival-kit",
   },
   {
+    ecosystem: "sapiom" as const,
+    title: "Ecosystem Monitor (live)",
+    url: "https://app.sapiom.ai/agents/748",
+  },
+  {
     ecosystem: "tempo" as const,
     title: "Tempo Batch Reconcile CLI",
     url: "https://github.com/kutluhaneth46/tempo-batch-reconcile",

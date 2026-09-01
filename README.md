@@ -1,30 +1,39 @@
 # ecosystem-monitor-agent
 
-A Sapiom agent, authored as code against [`@sapiom/agent`](https://www.npmjs.com/package/@sapiom/agent).
+Sapiom agent that tracks **open contributor PRs** and **public RPC health** across Arc, Tempo, Miden, and Sapiom — daily markdown report with optional LLM summary.
 
-## Getting started
+**Live agent:** https://app.sapiom.ai/agents/748  
+**Schedule:** daily 08:00 Europe/Istanbul
 
-```sh
+## What it monitors
+
+| Ecosystem | PRs tracked | RPC probe |
+|-----------|-------------|-----------|
+| Arc | arc-commerce #58, arc-node #295/#297/#299 | `rpc.testnet.arc.network` |
+| Tempo | tempo #7372, #7373 | `rpc.moderato.tempo.xyz` |
+| Miden | guardian-dashboard #49, web-sdk #332/#334/#351/#353 | `rpc.testnet.miden.io` (HTTPS reachability) |
+| Sapiom | sapiom-js #748 | — |
+
+Showcase repos are linked in each report (arc-dev-survival-kit, tempo-batch-reconcile, miden-dev-survival-kit, this agent).
+
+## Local development
+
+```bash
 npm install
+npm run typecheck
 ```
 
-Then open `index.ts`. The agent is defined with `defineAgent({ steps })`; each step is a `defineStep({ name, next, run })`. The `run` body is ordinary code — and inside it, the full Sapiom tool catalog is available, pre-auth'd and tenant-scoped, on `ctx.sapiom`:
+Authoring loop via Sapiom MCP: `check` → `run_local` → `deploy`. See `AGENTS.md`.
 
-```ts
-const box = await ctx.sapiom.sandboxes.create({ name: "demo" });
-const repo = await ctx.sapiom.repositories.create("my-repo");
+## Deploy
+
+Linked slug: `ecosystem-monitor` (definition **748**). Requires `main` branch and `sapiom.json`.
+
+```bash
+# after sapiom_authenticate
+# sapiom_dev_agents_deploy
 ```
 
-No credentials to wire — a per-execution tenant credential is injected for each agent run.
+## License
 
-## The loop
-
-Author and run this agent with the Sapiom dev tools:
-
-- **check** — typecheck, bundle and import the definition, then validate its manifest and step graph. No Sapiom account or service call is required.
-- **run_local** — execute the real steps locally with `ctx.sapiom.*` calls resolved from stubs, iterating until completion without Sapiom capability spend. Ordinary code in the project can still make its own network or machine changes.
-- **deploy** — build and ship.
-
-`npm run typecheck` and `npm run format` are also available for editor-level checks.
-
-See `AGENTS.md` for the full authoring loop.
+MIT
